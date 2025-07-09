@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cuestionario</title>
+</head>
+
+<body>
+    <h1>Hola, {{nombre}}</h1>
+    <p>¡Bienvenido al cuestionario ecológico!</p>
+
+    <h1>Pregunta 1</h1>
+    <p>¿Con qué frecuencia desconectas los aparatos que no estás usando?</p>
+
+    <!-- DUDAAAAA: ¿cómo uso el required aquí? lol-->
+    <form action="/p1" method="post">
+        <input type="radio" id="siempre" name="p1" value="0">
+        <label for="siempre">Siempre</label>
+
+        <input type="radio" id="aveces" name="p1" value="1" >
+        <label for="aveces">A veces</label>
+
+        <input type="radio" id="nunca" name="p1" value="2">
+        <label for="nunca">Nunca</label>
+
+        <button type="submit">Siguiente</button>
+
+    </form>
+
+</body>
+
+
+</html>
