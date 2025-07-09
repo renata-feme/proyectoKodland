@@ -17,14 +17,24 @@ def inicio():
     puntaje = 0
     return redirect("/p1")
 
-@app.route("/p1", methods=["POST", "GET"]) 
+@app.route("/p1", methods=["GET", "POST"]) 
 def p1():
-    global puntaje
+    global puntaje, nombre
     if request.method == "POST":
-        p1 = int(request.form[p1])
+        p1 = int(request.form.get("p1", 0))
         puntaje += p1
         return redirect("/p2")
     return render_template("pregunta1.html", nombre=nombre) # nombre (var del html) = name (var de Python (obtenida del request.form)), pasa como param
+
+@app.route("/p2", methods=["GET", "POST"])
+def p2():
+    global puntaje, nombre
+    if request.method == "POST":
+        p2 = int(request.form.get("p2", 0))
+        puntaje += p2
+        return "Tu puntaje es: " + str(puntaje)
+        # return redirect("/p3")
+    return render_template("pregunta2.html")
 
 #DUDAAAA: no sé por qué no sale, help
 #@app.route("/p2", methods=["POST", "GET"]) #pa' enviar el formulario y mostrarlo
