@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar sesión</title>
+</head>
+
+<body>
+
+    <h1>Iniciar sesión</h1>
+
+    {% if error %}
+    <p style="color: black;">{{ error }}</p>
+    {% endif %}
+    
+    <form action="{{ url_for('login') }}" method="post">
+        <label for="nombre">Usuario:</label>
+        <input type="text" id="nombre" name="nombre" required><br>
+
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" id="contrasena" name="contrasena" reaquired><br>
+
+        <button type="submit">Ingresar</button> 
+    </form>
+
+    <p>¿Aún no tienes cuenta? <a href="{{ url_for('registro')}}">Regístrate aquí</a></p>
+    
+</body>
+
+</html>

@@ -11,19 +11,13 @@
     <p>¡Bienvenido al cuestionario ecológico!</p></p>
 
     <h1>Pregunta 4</h1>
-    <p>Al hacer compras, ¿usas bolsas reutilizables?</p>
+    <p>¿Cuántas horas de dispositivos electrónicos usas por día?</p>
 
-    <form action="{{ url_for('p4', id_usuario=usuario.id) }}" method="POST">
-        <input type="radio" id="siempre" name="p4" value="0" required
+    <form action="{{ url_for('p6', id_usuario=usuario.id) }}" method="POST">
+        <input type="radio" id="horas0_3" name="p6" value="0" required
         oninvalid="this.setCustomValidity('Por favor, selecciona una opción')"
         onchange="this.setCustomValidity('')">
-        <label for="siempre">Siempre</label><br>
-
-        <input type="radio" id="aveces" name="p4" value="1" >
-        <label for="aveces">A veces</label><br>
-
-        <input type="radio" id="nunca" name="p4" value="2">
-        <label for="nunca">Nunca</label><br>
+        
 
         <button type="submit">Siguiente</button>
     </form>

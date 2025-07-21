@@ -13,17 +13,11 @@
     <h1>Pregunta 5</h1>
     <p>¿Cuál es tu medio de transporte más frecuente?</p>
 
-    <form action="{{ url_for('p4', id_usuario=usuario.id) }}" method="POST">
+    <form action="{{ url_for('p5', id_usuario=usuario.id) }}" method="POST">
         <input type="radio" id="bici" name="p5" value="0" required
         oninvalid="this.setCustomValidity('Por favor, selecciona una opción')"
         onchange="this.setCustomValidity('')">
-        <label for="bici">Bicicleta o caminar</label><br>
-
-        <input type="radio" id="public" name="p5" value="1" >
-        <label for="public">Transporte público</label><br>
-
-        <input type="radio" id="autos" name="p5" value="2">
-        <label for="autos">Auto o moto</label><br>
+       
 
         <button type="submit">Siguiente</button>
     </form>

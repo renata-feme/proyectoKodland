@@ -8,23 +8,15 @@
 
 <body>
     <h1>Hola, {{ usuario.nombre }}</h1>
-    <p>¡Bienvenido al cuestionario ecológico!</p>
 
     <h1>Pregunta 2</h1>
-    <p>¿Separas la basura?</p>
+    <p>¿Cuántos kWh de electricidad consumiste este mes en tu hogar?</p>
 
     <form action="{{ url_for('p2', id_usuario=usuario.id) }}" method="post">
-        <input type="radio" id="siempre" name="p2" value="0" required
-        oninvalid="this.setCustomValidity('Por favor, selecciona una opción')" 
-        onchange="this.setCustomValidity('')">
-        <label for="siempre">Siempre</label><br>
-
-        <input type="radio" id="aveces" name="p2" value="1" >
-        <label for="aveces">A veces</label><br>
-
-        <input type="radio" id="nunca" name="p2" value="2">
-        <label for="nunca">Nunca</label><br>
-
+        <input type="number" name="luz" min="0" required
+        oninvalid="this.setCustomValidity('Por favor, ingresa una cantidad.')" 
+        onchange="this.setCustomValidity('')"><br>
+        
         <button type="submit">Siguiente</button>
 
     </form>
