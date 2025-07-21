@@ -7,15 +7,16 @@
 </head>
 
 <body>
-    <h1>Hola, {{nombre}}</h1>
+    <h1>Hola, {{ usuario.nombre }}</h1>
     <p>¡Bienvenido al cuestionario ecológico!</p>
 
     <h1>Pregunta 1</h1>
     <p>¿Con qué frecuencia desconectas los aparatos que no estás usando?</p>
 
-    <!-- DUDAAAAA: ¿cómo uso el required aquí? lol-->
-    <form action="/p1" method="post">
-        <input type="radio" id="siempre" name="p1" value="0" required>
+    <form action="{{ url_for('p1', id_usuario=usuario.id) }}" method="post">
+        <input type="radio" id="siempre" name="p1" value="0" required 
+        oninvalid="this.setCustomValidity('Por favor, selecciona una opción')" 
+        onchange="this.setCustomValidity('')">
         <label for="siempre">Siempre</label><br>
 
         <input type="radio" id="aveces" name="p1" value="1" >
