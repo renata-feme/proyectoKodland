@@ -8,11 +8,10 @@
 
 <body>
     <h1>¡Hola, {{ usuario.nombre }}!</h1>
-    <p>Bienvenido/a. ¿Qué deseas hacer hoy?</p>
+    <p>¿Qué deseas hacer hoy?</p>
 
     <ul>
         <li><a href="{{ url_for('p1', id_usuario=usuario.id) }}">Responder cuestionario</a></li>
-        <!-- <li><a href="{{ url_for('verificador', id_usuario=usuario.id) }}">Verificar residuos con imagen</a></li> -->
 
     </ul>
 </body>

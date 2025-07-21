@@ -11,12 +11,13 @@
     <p>¡Bienvenido al cuestionario ecológico!</p>
 
     <h1>Pregunta 1</h1>
-    <p>¿Con qué frecuencia desconectas los aparatos que no estás usando?</p>
+    <p>¿Cuántos litrso de agua consumiste este mes?</p>
 
-    <form action="{{ url_for('p1', id_usuario=usuario.id) }}" method="post">
-        <input type="number" name="agua" min="0" required 
+    <form action="{{ url_for('p1', id_usuario=usuario.id) }}" method="post"> <!--pasa el valor de usuario.id al param id_usuario al generar la url-->
+        <input type="number" name="agua" id="agua" min="0" required 
         oninvalid="this.setCustomValidity('Por favor, ingresa una cantidad.')" 
-        onchange="this.setCustomValidity('')"> <br>
+        onchange="this.setCustomValidity('')"> 
+        <label for="agua">Litros</label><br>
 
         <button type="submit">Siguiente</button>
 

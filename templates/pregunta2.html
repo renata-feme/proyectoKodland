@@ -13,9 +13,10 @@
     <p>¿Cuántos kWh de electricidad consumiste este mes en tu hogar?</p>
 
     <form action="{{ url_for('p2', id_usuario=usuario.id) }}" method="post">
-        <input type="number" name="luz" min="0" required
+        <input type="number" name="luz" id="luz" min="0" required
         oninvalid="this.setCustomValidity('Por favor, ingresa una cantidad.')" 
-        onchange="this.setCustomValidity('')"><br>
+        onchange="this.setCustomValidity('')">
+        <label for="luz">kWh</label><br>
         
         <button type="submit">Siguiente</button>
 

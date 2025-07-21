@@ -17,7 +17,7 @@ class Usuario(db.Model):
     agua = db.Column(db.Float, default=0)
     luz = db.Column(db.Float, default=0)
 
-
+    gasolina = db.Column(db.Float, default=0.0) #HAY QUE ACTUALIZAR
 
 
 with app.app_context():
@@ -55,8 +55,8 @@ def menu(id_usuario):
 
 
 
-#PREGUNTAS 
-@app.route("/p1/<int:id_usuario>", methods=["GET", "POST"])
+#PREGUNTAS
+@app.route("/p1/<int:id_usuario>", methods=["GET", "POST"]) #<int:id_usuario>:  se espera un número y se guarda como id_usuario
 def p1(id_usuario):
     usuario = Usuario.query.get_or_404(id_usuario) #busca en la base de datos con ese id, si no lo encuentra manda error
     if request.method == "POST":
@@ -76,9 +76,15 @@ def p2(id_usuario):
         return redirect(f"/p3{usuario.id}")
     return render_template("pregunta2.html", usuario=usuario)
 
-
-
-
+@app.route("/p3/<int:id_usuario>", methods=["GET", "POST"])
+def p3(id_usuario):
+    usuario = Usuario.query.get_or_404(id_usuario)
+    if request.method == "POST":
+        gasolina = float(request.form.get("gasolina", 0))
+        usuario.gasolina = gasolina
+        db.session.commit()
+        return redirect(f"/p4/{usuario.id}")
+    return render_template("pregunta3.html", usuario=usuario)
 
 
 
