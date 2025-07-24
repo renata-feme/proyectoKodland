@@ -9,8 +9,8 @@
 <body>
     <h1>Hola, {{usuario.nombre}}</h1>
 
-    <h1>Pregunta 5</h1>
-    <p>¿Cuántos litros de agua embotellada consumiste este mes?</p>
+    <h1>Pregunta 5</h1> 
+    <p>¿Cuántos litros de agua embotellada consumes por semana, en promedio?</p>
 
     <form action="{{ url_for('p5', id_usuario=usuario.id) }}" method="POST">
         <input type="number" id="aguaEmbot" name="aguaEmbot" min="0" value="0" required

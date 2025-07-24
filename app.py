@@ -140,5 +140,43 @@ def p8(id_usuario):
         return redirect(f"/resultado/{usuario.id}")
     return render_template("pregunta8.html", usuario=usuario)
 
+@app.route("/resultado/<int:id_usuario>")
+def resultado(id_usuario):
+    usuario = Usuario.query.get_or_404(id_usuario)
+
+    #directos
+    aguaTotal = usuario.agua * 0.0013
+    luzTotal = usuario.luz * 0.5
+    gasolinaTotal = usuario.gasolina * 2.31
+    duchaTotal = usuario.bano * 9 * 30 * 0.0013
+    botellasTotal = usuario.aguaEmbot * 4 * 0.3
+    ropaTotal = usuario.ropa * 7.5
+
+     # Factores recicalje
+    if usuario.reciclaje == 0:
+        factor_reciclaje = 1.0
+    elif usuario.reciclaje == 1:
+        factor_reciclaje = 0.9
+    elif usuario.reciclaje == 2:
+        factor_reciclaje = 0.7
+    else:
+        factor_reciclaje = 0.5
+
+    # Factores consumo local
+    if usuario.consumoLocal == 0:
+        factor_consumo = 1.0
+    elif usuario.consumoLocal == 1:
+        factor_consumo = 0.85
+    else:
+        factor_consumo = 0.7
+
+    # Cálculo total con factores aplicados
+    total = ( aguaTotal + luzTotal + gasolinaTotal + duchaTotal +
+        ropaTotal + botellasTotal) * factor_reciclaje * factor_consumo
+
+    usuario.puntaje = round(total, 2)
+    db.session.commit()
+
+    return render_template("resultado.html", usuario=usuario)
 
 app.run(debug=True)
