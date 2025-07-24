@@ -18,7 +18,11 @@ class Usuario(db.Model):
     luz = db.Column(db.Float, default=0)
 
     gasolina = db.Column(db.Float, default=0.0) #HAY QUE ACTUALIZAR
-
+    bano = db.Column(db.Float, default=0) 
+    aguaEmbot = db.Column(db.Float, default=0)
+    reciclaje = db.Column(db.Integer, default=0)
+    ropa = db.Column(db.Integer, default=0)
+    consumoLocal = db.Column(db.Integer, default=0)
 
 with app.app_context():
     db.create_all()
@@ -53,7 +57,7 @@ def menu(id_usuario):
     usuario = Usuario.query.get_or_404(id_usuario)
     return render_template("menu.html", usuario=usuario)
 
-
+# id_usuario : número recibido desde la URL
 
 #PREGUNTAS
 @app.route("/p1/<int:id_usuario>", methods=["GET", "POST"]) #<int:id_usuario>:  se espera un número y se guarda como id_usuario
@@ -86,7 +90,55 @@ def p3(id_usuario):
         return redirect(f"/p4/{usuario.id}")
     return render_template("pregunta3.html", usuario=usuario)
 
+@app.route("/p4/<int: id_usuario>", methods=["GET", "POST"])
+def p4(id_usuario):
+    usuario = Usuario.query.get_or_404(id_usuario)
+    if request.method == "POST":
+        bano = float(request.form.get("bano", 0))
+        usuario.bano = bano
+        db.session.commit()
+        return redirect(f"/p5/{usuario.id}")
+    return render_template("pregunta4.html", usuario=usuario)
 
+@app.route("/p5/<int:id_usuario>", methods=["GET", "POST"])
+def p5(id_usuario):
+    usuario = Usuario.query.get_or_404(id_usuario)
+    if request.methos == ["POST"]:
+        aguaEmbot = float(request.form.get("aguaEmbot", 0))
+        usuario.aguaEmbot = aguaEmbot
+        db.session.commit()
+        return redirect(f"/p6/{usuario.id}")
+    return render_template("pregunta5.html", usuario=usuario)
+
+@app.route("/p6/<int:id_usuario>", methods=["GET", "POST"])
+def p6(id_usuario):
+    usuario = Usuario.query.get_or_404(id_usuario)
+    if request.method == "POST":
+        reciclaje = int(request.form.get("reciclaje", 0))
+        usuario.reciclaje = reciclaje
+        db.session.commit()
+        return redirect(f"/p7/{usuario.id}")
+    return render_template("pregunta6.html", usuario=usuario)
+
+@app.route("/p7/<int:id_usuario>", methods=["GET", "POST"])
+def p7(id_usuario):
+    usuario = Usuario.query.get_or_404(id_usuario)
+    if request.method == "POST":
+        ropa = int(request.form.get("ropa", 0))
+        usuario.ropa = ropa
+        db.session.commit()
+        return redirect(f"/p8/{usuario.id}")
+    return render_template("pregunta7.html", usuario=usuario)
+
+@app.route("/p8/<int:id_usuario>", methods=["GET", "POST"])
+def p8(id_usuario):
+    usuario = Usuario.query.get_or_404(id_usuario)
+    if request.method == "POST":
+        consumoLocal = int(request.form.get("consumoLocal", 0))
+        usuario.consumoLocal = consumoLocal
+        db.session.commit()
+        return redirect(f"/resultado/{usuario.id}")
+    return render_template("pregunta8.html", usuario=usuario)
 
 
 app.run(debug=True)

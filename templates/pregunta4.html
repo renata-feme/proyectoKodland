@@ -8,17 +8,16 @@
 
 <body>
     <h1>Hola, {{usuario.nombre}}</h1>
-    <p>¡Bienvenido al cuestionario ecológico!</p></p>
 
     <h1>Pregunta 4</h1>
-    <p>Al hacer compras, ¿usas bolsas reutilizables?</p>
+    <p>¿Cuántos minutos, aproximadamente, dura tu ducha diaria?</p>
 
     <form action="{{ url_for('p4', id_usuario=usuario.id) }}" method="POST">
-        <input type="radio" id="siempre" name="p4" value="0" required
+        <input type="number" id="bano" name="bano" min="0" value="0" required
         oninvalid="this.setCustomValidity('Por favor, selecciona una opción')"
         onchange="this.setCustomValidity('')">
+        <label for="bano">Minutos</label><br>
         
-
         <button type="submit">Siguiente</button>
     </form>
 </body>

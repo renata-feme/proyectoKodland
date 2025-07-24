@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cuestionario</title>
+</head>
+
+<body>
+    <h1>Hola, {{usuario.nombre}}</h1>
+</body>
+
+    <h1>Pregunta 7</h1>
+    <p>¿Cuántas prendas nuevas compraste este mes?</p>
+
+    <form action="{{ url_for('p7', id_usuario=usuario.id) }}" method="post">
+        <input type="number" name="ropa" id="ropa" min="0" required>
+        <label for="ropa">Prendas</label><br>
+
+        <button type="submit">Siguiente</button>
+    </form>
+
+</html>

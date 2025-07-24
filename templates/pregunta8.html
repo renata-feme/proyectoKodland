@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cuestionario</title>
+</head>
+<body>
+    <h1>Hola, {{ usuario.nombre }}</h1>
+
+    <h1>Pregunta 8</h1>
+    <p> ¿Compraste productos locales o a granel este mes?</p>
+
+    <form action="{{ url_for('p8', id_usuario=usuario.id) }}" method="post">
+        <input type="radio" id="nunca" name="consumoLocal" value="0" required>
+        <label for="nunca">Nunca</label><br>
+
+        <input type="radio" id="aveces" name="consumoLocal" value="1">
+        <label for="aveces">A veces</label><br>
+
+        <input type="radio" id="siempre" name="consumoLocal" value="2">
+        <label for="siempre">Siempre</label><br><br>
+
+        <button type="submit">Ver resultado</button>
+    </form>
+</body>
+</html>
